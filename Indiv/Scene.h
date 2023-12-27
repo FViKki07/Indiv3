@@ -9,6 +9,7 @@
 
 class Scene
 {
+	Directional_light dir_light;
 	sf::Time deltaTime;
 	sf::Clock clock;
 	sf::Clock unstopClock;
@@ -20,6 +21,7 @@ public:
 	Scene()
 	{
 		camera = Camera({ 0.0f, 90.0f, 150.0f });
+		dir_light = Directional_light();
 	}
 
 	void AddShaderProgram(Shader& sp)
@@ -40,8 +42,16 @@ public:
 		for (auto& shader : shaders)
 		{
 			shader->Use();
+			shader->SetUniformFloat("TIME", unstopClock.getElapsedTime().asSeconds());
+			shader->SetUniformVec3("viewPos", camera.Position);
 			shader->SetUniformMat4("projection", projection);
 			shader->SetUniformMat4("view", camera.GetViewMatrix());
+
+			shader->SetUniformVec3("directionalLight.direction", dir_light.direction);
+			shader->SetUniformVec3("directionalLight.ambient", dir_light.ambient);
+			shader->SetUniformVec3("directionalLight.diffuse", dir_light.diffuse);
+			shader->SetUniformVec3("directionalLight.specular", dir_light.specular);
+
 			glUseProgram(0);
 		}
 

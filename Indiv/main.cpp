@@ -9,10 +9,7 @@
 #include "SceneObject.h"
 #include "Scene.h"
 
-// camera
-Camera camera(glm::vec3(0.0f, 0.0f, -3.0f));
-//float lastX = SCREEN_WIDTH / 2.0f;
-//float lastY = SCREEN_HEIGHT / 2.0f;
+
 //bool firstMouse = true;
 bool isCamActive = false;
 //bool isCamTouched = false;
@@ -29,7 +26,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     Shader shader = Shader("Shaders\\sun.vs", "Shaders\\sun.frag", "simple");
-    Shader santaShader = Shader("Shaders\\santa.vs", "Shaders\\sun.frag", "santa");
+    Shader santaShader = Shader("Shaders\\sun.vs", "Shaders\\sun.frag", "santa");
 
     Mesh mesh_ground = Mesh("meshes\\box.obj", "meshes\\snow.jpg");
     SceneObject ground = SceneObject(&mesh_ground, &shader);
@@ -117,12 +114,12 @@ int main()
                 //player.OnKeyPress(event.key.code, mainScene.getDeltaTime());
                 switch (event.key.code)
                 {
-                case (sf::Keyboard::W): move_z -= 10; break;
-                case (sf::Keyboard::S): move_z += 10; break;
-                case (sf::Keyboard::A): move_x -= 10; break;
-                case (sf::Keyboard::D): move_z += 10; break;
-                case (sf::Keyboard::Z): move_y -= 10; break;
-                case (sf::Keyboard::X): move_y += 10; break;
+                case (sf::Keyboard::W): santa.position.z -= 10 ; break;
+                case (sf::Keyboard::S): santa.position.z += 10; break;
+                case (sf::Keyboard::A): santa.position.x -= 10;  break;
+                case (sf::Keyboard::D): santa.position.x += 10; break;
+                case (sf::Keyboard::Z): santa.position.y -= 10; break;
+                case (sf::Keyboard::X): santa.position.y += 10;; break;
                 case (sf::Keyboard::J): mainScene.camera.ProcessKeyboard(LROTATION, mainScene.getDeltaTime()); break;
                 case (sf::Keyboard::L): mainScene.camera.ProcessKeyboard(RROTATION, mainScene.getDeltaTime()); break;
                 case (sf::Keyboard::I): mainScene.camera.ProcessKeyboard(UPROTATION, mainScene.getDeltaTime() * 2); break;

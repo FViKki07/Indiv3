@@ -27,10 +27,7 @@ public:
 
 	void Draw(float x, float y, float z)
 	{
-		/*
-		if (shader->name == "santa") {
-			position.y = 30;
-			position.x = 30;
+
 			glm::mat4 model = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f))
 				* glm::rotate(glm::mat4(1.0f), rotation.y, glm::vec3(0.0f, 1.0f, 0.0f))
 				* glm::rotate(glm::mat4(1.0f), rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
@@ -38,18 +35,10 @@ public:
 				* glm::scale(glm::mat4(1.f), scale);
 			shader->Use();
 			shader->SetUniformMat4("model", model);
+			shader->SetUniformMat4("scale", glm::scale(glm::mat4(1.f), scale));
 			shader->SetUniformFloat("move_x", x);
 			shader->SetUniformFloat("move_y", y);
 			shader->SetUniformFloat("move_z", z);
-		}
-		else {-**/
-			glm::mat4 model = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f))
-				* glm::rotate(glm::mat4(1.0f), rotation.y, glm::vec3(0.0f, 1.0f, 0.0f))
-				* glm::rotate(glm::mat4(1.0f), rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
-				* glm::translate(glm::mat4(1.f), position)
-				* glm::scale(glm::mat4(1.f), scale);
-			shader->Use();
-			shader->SetUniformMat4("model", model);
 	//	}
 		mesh->Draw(*shader);
 		glUseProgram(0);

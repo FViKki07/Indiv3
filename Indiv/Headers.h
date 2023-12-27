@@ -20,6 +20,7 @@
 #include <chrono>
 #include <ctime>  
 #include <SOIL/SOIL.h> 
+#include "direct_light.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
@@ -40,4 +41,11 @@ enum Camera_Movement {
     RROTATION,
     UPROTATION,
     DOWNROTATION
+};
+
+struct Texture
+{
+    GLuint id;
+    std::string type;
+    sf::Texture texture;
 };
